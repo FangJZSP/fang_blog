@@ -4,11 +4,13 @@ date: 2026-05-09 17:00:00
 categories:
   - 技术
 tags:
+  - AIGC
   - Hexo
   - Typography
   - 博客
 desc: 从零掌握 Hexo 静态博客框架，以及活版印字主题的配置与定制技巧。
 ---
+
 ## Hexo 基础
 
 ### 安装
@@ -22,13 +24,13 @@ npm install
 
 ### 常用命令
 
-| 命令 | 作用 |
-|---|---|
-| `hexo server` | 启动本地预览，默认 `http://localhost:4000` |
-| `hexo new "文章标题"` | 在 `source/_posts/` 创建新文章 |
-| `hexo generate` | 生成静态文件到 `public/` 目录 |
-| `hexo deploy` | 部署到远程服务器（需配置 deploy 段） |
-| `hexo clean` | 清除缓存和静态文件 |
+| 命令                | 作用                                |
+|-------------------|-----------------------------------|
+| `hexo server`     | 启动本地预览，默认 `http://localhost:4000` |
+| `hexo new "文章标题"` | 在 `source/_posts/` 创建新文章          |
+| `hexo generate`   | 生成静态文件到 `public/` 目录              |
+| `hexo deploy`     | 部署到远程服务器（需配置 deploy 段）            |
+| `hexo clean`      | 清除缓存和静态文件                         |
 
 ### 文章 Front-matter
 
@@ -175,14 +177,14 @@ feed:
 
 启用对应插件后，主题会自动生成：
 
-| 路径 | 内容 |
-|---|---|
-| `/archives` | 全部文章归档 |
-| `/categories` | 分类列表 |
-| `/categories/技术` | 某分类下的文章 |
-| `/tags` | 标签列表 |
-| `/tags/Hexo` | 某标签下的文章 |
-| `/atom.xml` | Atom 订阅源 |
+| 路径               | 内容       |
+|------------------|----------|
+| `/archives`      | 全部文章归档   |
+| `/categories`    | 分类列表     |
+| `/categories/技术` | 某分类下的文章  |
+| `/tags`          | 标签列表     |
+| `/tags/Hexo`     | 某标签下的文章  |
+| `/atom.xml`      | Atom 订阅源 |
 
 ### 每篇文章的 SEO
 

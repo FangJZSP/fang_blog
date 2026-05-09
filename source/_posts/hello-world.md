@@ -4,10 +4,12 @@ date: 2026-05-09 15:08:05
 categories:
   - 技术
 tags:
+  - AIGC
   - Hexo
   - 博客
 desc: 我的第一篇博客文章，使用 Hexo 和 Typography 主题搭建。
 ---
+
 欢迎来到我的博客！这是使用 **Hexo** 和「活版印字」主题搭建的第一篇文章。
 
 ## 代码测试

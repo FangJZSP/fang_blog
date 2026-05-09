@@ -4,6 +4,7 @@ date: 2026-05-09 18:00:00
 categories:
   - 技术
 tags:
+  - AIGC
   - GitHub Pages
   - Hexo
   - 部署

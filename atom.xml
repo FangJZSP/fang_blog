@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <author>
+    <name>放</name>
+  </author>
+  <generator uri="https://hexo.io/">Hexo</generator>
+  <id>https://fangjzsp.github.io/fang_blog/</id>
+  <link href="https://fangjzsp.github.io/fang_blog/" rel="alternate"/>
+  <link href="https://fangjzsp.github.io/fang_blog/atom.xml" rel="self"/>
+  <rights>All rights reserved 2026, 放</rights>
+  <subtitle>个人技术博客</subtitle>
+  <title>放的博客</title>
+  <updated>2026-05-09T07:22:52.190Z</updated>
+  <entry>
+    <author>
+      <name>放</name>
+    </author>
+    <category term="技术" scheme="https://fangjzsp.github.io/fang_blog/categories/%E6%8A%80%E6%9C%AF/"/>
+    <category term="OpenSpec" scheme="https://fangjzsp.github.io/fang_blog/tags/OpenSpec/"/>
+    <category term="工作流" scheme="https://fangjzsp.github.io/fang_blog/tags/%E5%B7%A5%E4%BD%9C%E6%B5%81/"/>
+    <category term="工具" scheme="https://fangjzsp.github.io/fang_blog/tags/%E5%B7%A5%E5%85%B7/"/>
+    <content>
+      <![CDATA[<h2 id="什么是-OpenSpec"><a href="#什么是-OpenSpec" class="headerlink" title="什么是 OpenSpec"></a>什么是 OpenSpec</h2><p>OpenSpec 是一套<strong>结构化变更管理</strong>工作流，将每个改动封装为独立的 change，通过 <code>propose → apply → archive</code> 三个阶段确保变更可追溯、可审查。</p><h2 id="核心工作流"><a href="#核心工作流" class="headerlink" title="核心工作流"></a>核心工作流</h2><h3 id="1-Propose（提案）"><a href="#1-Propose（提案）" class="headerlink" title="1. Propose（提案）"></a>1. Propose（提案）</h3><p>运行 <code>/openspec-propose</code> 描述你的需求，系统会自动生成 4 个制品：</p><table><thead><tr><th>制品</th><th>用途</th></tr></thead><tbody><tr><td><code>proposal.md</code></td><td>为什么要做这个变更，变更范围是什么</td></tr><tr><td><code>design.md</code></td><td>技术方案，关键决策与理由，风险权衡</td></tr><tr><td><code>specs/*/spec.md</code></td><td>可测试的需求规格，每个需求含 WHEN&#x2F;THEN 场景</td></tr><tr><td><code>tasks.md</code></td><td>按依赖排序的实施任务清单</td></tr></tbody></table><h3 id="2-Apply（实施）"><a href="#2-Apply（实施）" class="headerlink" title="2. Apply（实施）"></a>2. Apply（实施）</h3><p>运行 <code>/openspec-apply</code> 开始逐项执行任务清单。每个任务完成后自动勾选 <code>[x]</code>，进度实时可见。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 示例：tasks.md 中的任务结构</span></span><br><span class="line"><span class="comment">## 1. 初始化</span></span><br><span class="line">- [x] 1.1 创建项目结构</span><br><span class="line">- [x] 1.2 安装依赖</span><br><span class="line"></span><br><span class="line"><span class="comment">## 2. 核心功能</span></span><br><span class="line">- [x] 2.1 实现数据导出</span><br><span class="line">- [ ] 2.2 添加单元测试</span><br></pre></td></tr></table></figure><h3 id="3-Archive（归档）"><a href="#3-Archive（归档）" class="headerlink" title="3. Archive（归档）"></a>3. Archive（归档）</h3><p>所有任务完成后运行 <code>/openspec-archive</code>，将 change 目录归档到 <code>openspec/changes/archive/</code>，delta specs 同步到主 specs 目录。归档后的目录结构：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">openspec/changes/archive/</span><br><span class="line">└── 2026-05-09-setup-hexo-blog/</span><br><span class="line">    ├── proposal.md</span><br><span class="line">    ├── design.md</span><br><span class="line">    ├── specs/</span><br><span class="line">    ├── tasks.md</span><br><span class="line">    └── .openspec.yaml</span><br></pre></td></tr></table></figure><h2 id="实践案例：搭建本博客"><a href="#实践案例：搭建本博客" class="headerlink" title="实践案例：搭建本博客"></a>实践案例：搭建本博客</h2><p>以搭建这个 Hexo 博客为例，完整流程如下：</p><ol><li><strong>Propose</strong>：描述”搭建 Hexo 博客，使用 Typography 主题，部署到 GitHub Pages”</li><li>系统生成 3 个 capability specs（blog-setup、theme-typography、github-pages-deploy）和 22 个实施任务</li><li><strong>Apply</strong>：依次完成 Hexo 初始化、主题安装、插件配置、GitHub Pages 部署</li><li><strong>Archive</strong>：归档到 <code>2026-05-09-setup-hexo-blog</code>，specs 同步到主目录</li></ol><h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>OpenSpec 的优势在于：</p><ul><li><strong>结构化</strong>：proposal → design → specs → tasks 的清晰链路</li><li><strong>可追溯</strong>：每个变更独立归档，含完整上下文</li><li><strong>可测试</strong>：specs 中的 WHEN&#x2F;THEN 场景可直接作为测试用例</li><li><strong>渐进式</strong>：不需要一次性做完所有事情，任务清单支持暂停和继续</li></ul>]]>
+    </content>
+    <id>https://fangjzsp.github.io/fang_blog/2026/05/09/openspec-guide/</id>
+    <link href="https://fangjzsp.github.io/fang_blog/2026/05/09/openspec-guide/"/>
+    <published>2026-05-09T08:00:00.000Z</published>
+    <summary>
+      <![CDATA[<h2 id="什么是-OpenSpec"><a href="#什么是-OpenSpec" class="headerlink" title="什么是 OpenSpec"></a>什么是 OpenSpec</h2><p>OpenSpec 是一套<strong>结构化变更管理</s]]>
+    </summary>
+    <title>使用 OpenSpec 管理项目变更</title>
+    <updated>2026-05-09T07:22:52.190Z</updated>
+  </entry>
+  <entry>
+    <author>
+      <name>放</name>
+    </author>
+    <category term="技术" scheme="https://fangjzsp.github.io/fang_blog/categories/%E6%8A%80%E6%9C%AF/"/>
+    <category term="Hexo" scheme="https://fangjzsp.github.io/fang_blog/tags/Hexo/"/>
+    <category term="博客" scheme="https://fangjzsp.github.io/fang_blog/tags/%E5%8D%9A%E5%AE%A2/"/>
+    <content>
+      <![CDATA[<p>欢迎来到我的博客！这是使用 <strong>Hexo</strong> 和「活版印字」主题搭建的第一篇文章。</p><h2 id="代码测试"><a href="#代码测试" class="headerlink" title="代码测试"></a>代码测试</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">greet</span>(<span class="params">name</span>):</span><br><span class="line">    <span class="keyword">return</span> <span class="string">f&quot;Hello, <span class="subst">&#123;name&#125;</span>!&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(greet(<span class="string">&quot;World&quot;</span>))</span><br></pre></td></tr></table></figure><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br><span class="line">$ hexo server</span><br><span class="line">$ hexo generate</span><br><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><h2 id="功能清单"><a href="#功能清单" class="headerlink" title="功能清单"></a>功能清单</h2><ul><li>分类与标签系统</li><li>RSS&#x2F;Atom 订阅</li><li>代码语法高亮</li><li>GitHub Pages 部署</li></ul>]]>
+    </content>
+    <id>https://fangjzsp.github.io/fang_blog/2026/05/09/hello-world/</id>
+    <link href="https://fangjzsp.github.io/fang_blog/2026/05/09/hello-world/"/>
+    <published>2026-05-09T07:08:05.000Z</published>
+    <summary>
+      <![CDATA[<p>欢迎来到我的博客！这是使用 <strong>Hexo</strong> 和「活版印字」主题搭建的第一篇文章。</p>
+<h2 id="代码测试"><a href="#代码测试" class="headerlink" title="代码测试"></a>代码测试</h2><fi]]>
+    </summary>
+    <title>Hello World</title>
+    <updated>2026-05-09T07:08:56.270Z</updated>
+  </entry>
+</feed>

@@ -1,6 +1,6 @@
 ---
 title: AI 编程工具的 Skill 机制 — 从 Agent 视角理解
-date: 2026-05-09 20:00:00
+date: 2026-05-11 11:00:00
 categories:
   - 技术
 tags:

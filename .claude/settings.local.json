@@ -1,0 +1,31 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:github.com)",
+      "Bash(npm list *)",
+      "Bash(openspec new *)",
+      "Bash(openspec status *)",
+      "Bash(openspec instructions *)",
+      "Bash(hexo version *)",
+      "Bash(npm --version)",
+      "Bash(npm install *)",
+      "Bash(hexo init *)",
+      "Read(//private/tmp/**)",
+      "Bash(rm -rf hexo-temp)",
+      "Bash(git config *)",
+      "Bash(timeout 10 hexo server)",
+      "Bash(hexo server *)",
+      "Bash(kill %1)",
+      "Bash(npm uninstall *)",
+      "Bash(git clone *)",
+      "Bash(hexo generate *)",
+      "Bash(gh auth *)",
+      "Bash(hexo new *)",
+      "Bash(brew list *)",
+      "Bash(git remote *)",
+      "Bash(hexo deploy *)",
+      "Bash(git add *)",
+      "Bash(git commit *)"
+    ]
+  }
+}
